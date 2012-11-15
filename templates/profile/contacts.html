@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block subtitle %}Feedback{% endblock %}
+
+{% block content %}
+<h2>Список всего, с помощью чего вы можете со мной связаться</h2>
+
+{% if profile.get_emails %}
+<h6>Адреса электронной почты по которым Вы можете со мной связаться:</h6>
+<p>
+{% for i in profile.get_emails %}
+<span><a href="mailto::{{i}}">{{i}}, </a><span>
+{% endfor %}
+</p>
+{% endif %}
+
+{% if profile.get_social %}
+<h6>Так же вы можете найти меня в социальных сетях:</h6>
+{% for i in profile.get_social %}
+<span>{{i.title}}: <span><a href="{{i}}" target="_blanck">i</a>
+{% endfor %}
+{% endif %}
+
+{% endblock content %}
+
+

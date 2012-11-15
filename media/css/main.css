@@ -45,6 +45,11 @@ p>span {
     color:#aaa;
 }
 
+a {
+    text-decoration:none;
+    color:#aaa;
+}
+
 hr {
     box-shadow: 0 0 3px #999999;
     color: #EFEFEF;
