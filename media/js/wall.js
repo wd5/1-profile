@@ -1,0 +1,173 @@
+var tmp;
+var flagmove=false;
+var flagupdate=false;
+var moveEl;
+var x0,y0;
+var x1,y1;
+
+function addStiker (ev) {
+    if(ev.target.id!='wall')
+	return;
+    showPopupAdd(ev.pageX,ev.pageY,ev.layerX,ev.layerY);
+
+/*
+    var s = jQuery('<div class="stiker"><h1>Тестовое задание</h1><p>Основной текст_</p><div id="to-user">Alex</div></div>');
+    $(ev.target).append(s);
+    s.append(jQuery('<div class="close">x</div>').click(removeStiter));
+
+    s.css('left',ev.layerX.toString()+'px');
+    s.css('top',ev.layerY.toString()+'px');
+
+    addTask();
+*/
+}
+
+function showPopupAdd(x,y,x1,y1){
+    var root=$(document.body);
+    jQuery('#exposeMask').css('display','block');
+    root.prepend('<div id="body-dialog" class="modal" style="position: absolute; margin: 0 auto; z-index: 9999"></div>');
+    var dialog=$('#body-dialog');
+    root=dialog;
+    root.append('<div class="modal-header"><a href="javascript:closeDialog()" class="close">x</a><h3>Title</h3><input type="text" id="add-kask-title" value="Title"/></div>');
+    root.append('<div class="modal-body"><textarea rous="3" id="add-kask-text" value=""/></div>');
+    dialog.css('top',y.toString()+'px');
+    dialog.css('left',x.toString()+'px');
+    dialog.css('width','300px');
+    root.append('<div class="modal-footer"><div class="btn success" onclick="addTask('+x1.toString()+','+y1.toString()+');">Add</div><div onclick="closeDialog();" class="btn">Сancel</div></div>');
+}
+
+function closeDialog(){
+    $('#body-dialog').remove();
+    jQuery('#exposeMask').css('display','none');
+}
+
+
+function addTask(x,y){
+    var r;
+    $.ajax({
+	       method : 'GET',
+	       url : 'add-task/',
+	       data : {'title':$('#add-kask-title')[0].value,
+		       'text':$('#add-kask-text')[0].value,
+		       'x':x,
+		       'y':y},
+	       success : function(data){
+		   if(data['errors'].length==0){
+		       var d=data['data'];
+		       var s = jQuery('<div class="stiker"><h1>'+d['title']+'</h1><p>'+d['text']+'</p><div id="to-user">'+d['user']+'</div></div>');
+		       $('#wall').append(s);
+		       s.append(jQuery('<div class="close" taskId="'+d['id'].toString()+'">x</div>').click(removeStiter));
+		       s.css('left',d['x'].toString()+'px');
+		       s.css('top',d['y'].toString()+'px');
+		       closeDialog();
+		   }
+	       }
+	   });
+}
+
+function removeStiker (ev) {
+    $.ajax({
+	       method : 'GET',
+	       url : $(ev.target).attr('taskId')+'/del-task/',
+	       data : {},
+	       success : function(){}
+	   });
+
+    $(ev.target).parent().remove();
+}
+
+function _activateTask(task_id){
+    $('#activate-'+task_id).hide();
+    $('#deactivate-'+task_id).show();
+    $('#state-'+task_id).html('Состояние: <span style="color:green">active</span>');
+}
+
+function _unactivateTask(task_id){
+    $('#deactivate-'+task_id).hide();
+    $('#activate-'+task_id).show();
+    $('#state-'+task_id).html('Состояние: <span style="color:blue">unactive</span>');
+}
+
+
+function activateTask (ev){
+    $.ajax({
+	       method : 'GET',
+	       url : $(ev.target).attr('taskId')+'/activate/',
+	       data : {},
+	       success : function(data){
+		   if(!data['error']){
+		       _activateTask(data['task_id']);
+		       if(data['stop_task_id']>=0)
+			   _unactivateTask(data['stop_task_id']);
+		   }
+	       }
+	   });
+}
+
+function deactivateTask (ev){
+    $.ajax({
+	       method : 'GET',
+	       url : $(ev.target).attr('taskId')+'/deactivate/',
+	       data : {},
+	       success : function(data){
+		   if(!data['error']){
+		       _unactivateTask(data['task_id']);
+		   }
+	       }
+	   });
+}
+
+
+function updateTask(task_id,param){
+    $.ajax({
+	       method : 'GET',
+	       url : task_id+'/update-task/',
+	       data : param,
+	       success : function(data){
+	       }
+	   });    
+}
+
+function moveTask (ev){
+    if (flagmove){
+	var w=moveEl.position();
+	moveEl.css('left',(w.left+(ev.pageX-x0)).toString()+'px');
+	moveEl.css('top',(w.top+(ev.pageY-y0)).toString()+'px');	
+	x1=w.left+(ev.pageX-x0);
+	y1=w.top+(ev.pageY-y0);
+
+	var w=$('#wall').position();
+	x0 = ev.pageX;
+	y0 = ev.pageY;
+	flagupdate=true;
+    }
+}
+
+$(document).ready(
+    function () {
+	$('.topbar').dropdown();
+	$('#wall').click(addStiker);
+	$('.close').click(removeStiker);
+	$('.activate-task').click(activateTask);
+	$('.deactivate-task').click(deactivateTask);
+	$('.stiker').mousedown(function(ev){
+				   moveEl = $(ev.target);
+				   if (moveEl.attr('class')=='stiker')
+				       {
+					   flagmove=true;
+					   var w=$('#wall').position();
+					   x0 = ev.pageX;
+					   y0 = ev.pageY;
+				       }
+			       });
+	$('.stiker').mouseup(function(ev){
+					  if (flagupdate && flagmove){
+					      updateTask(moveEl.find('.close').attr('taskid'),{'x':x1,'y':y1});
+					  }
+				          flagmove=false;
+					  flagupdate=false;
+					    });
+	$('body').mousemove(moveTask);
+    });
+
+

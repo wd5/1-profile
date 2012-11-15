@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block subtitle %}Home{% endblock %}
+
+{% block content %}
+      <div class="header-content">
+	<div class="avatar"></div>
+	<h1>{{profile.first_name}} {{profile.last_name}}</h1>
+	<h2>python-developer</h2>
+	<p>{{profile.note}}</p>
+	<p>
+	  Email: <span>{{profile.email}}</span><br/>
+	  Website: <span>{{profile.website}}</span>
+	</p>
+      </div>
+      <hr/>
+      <div class="inner-content">
+	<h3>Project</h3>
+	<div class="content-box">
+	  <h1>[Job title]</h1>
+	  <h2>compani name</h2>
+	  <p>Содержимое контента</p>
+	</div>
+	<div class="content-box">
+	  <h1>[Job title]</h1>
+	  <h2>compani name</h2>
+	  <p>Содержимое контента</p>
+	</div>
+      </div>
+{% endblock %}

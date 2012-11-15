@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>    
+    <link type="image/png" rel="icon" href="/media/img/favicon.png"/>
+    <title>{% block title %} Alex Barauskas {% endblock %} | 
+      {% block subtitle %}{% endblock %}
+    </title>
+
+    <link type="text/css" rel="stylesheet" href="/media/css/main.css" media="screen, projection" />
+    {% block css %}
+    {% endblock %}
+
+    {% block preload_js %}
+    {% endblock %}
+
+  </head>
+
+  <body>
+    <!--div class="header"> 
+	header
+	</div-->    
+    <div class="content">
+      <div class="menu">
+
+	<ul>
+	  <li class="active"><a href="/">Главная</a></li>
+	  <li><a href="#">Контакты</a></li>
+	  <li><a href="#">О проекте</a></li>
+	</ul>
+	<div class="clear"></div>
+      </div>
+      <hr/>
+
+      {% block content%}
+      {% endblock content%}
+    </div>
+    <div class="clear"></div>
+
+    <hr/>
+    <div class="footer">
+      Thu Nov 15 2012
+    </div>
+  </body>
+</html>
