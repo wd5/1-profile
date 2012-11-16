@@ -41,6 +41,8 @@ class Profile(models.Model):
     def get_skype(self):
         return self.get_contacts(t='s')
 
+    def __unicode__(self):
+        return '%s %s' % (self.first_name, self.last_name)
 
 
 def get_profile():
@@ -52,7 +54,7 @@ def get_profile():
             first_name='Alex',
             last_name='Barauskas',
             email='barauskasalex@gmail.com',
-            website='http://barauskasalex.appspot.com',
+            website='http://barauskas-alex.appspot.com',
             active=True,
             note=u"Немного о себе. Я закончил Белорусский Государственный Университет по специальности математик-системный аналитик. На данный момент основной моей работой и основным хобби является web-разработка на Python/Django. Собственно на чем и реализована данная визитка.",
             )
@@ -77,5 +79,12 @@ class Contact(models.Model):
     def __unicode__(self):
         return self.contact
 
-#class 
+class Work(models.Model):
+    profile = models.ForeignKey(Profile)
+    campaign = models.CharField(max_length=128)
+    place = models.CharField(max_length=64)
+    note = models.TextField()
+    begin = models.DateField()
+    end = models.DateField(null=True, blank=True)
+    
 

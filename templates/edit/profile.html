@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block subtitle %}Редактирование профиля{% endblock %}
+
+{% block content %}
+<h3>Редактирование основных данных профиля.</h3>
+<form method="POST" action="" enctype="multipart/form-data">
+<div class="input-box">
+  <label for="id_first_name">{{form.first_name.label}}</label>
+  {{form.first_name}}
+  {% for e in form.first_name.errors%}
+  <p class="error">{{e}}</p>
+  {% endfor %}
+</div>
+<div class="input-box">
+  <label for="id_last_name">{{form.last_name.label}}</label>
+  {{form.last_name}}
+  {% for e in form.last_name.errors%}
+  <p class="error">{{e}}</p>
+  {% endfor %}
+</div>
+
+<div class="input-box">
+  <label for="id_email">{{form.email.label}}</label>
+  {{form.email}}
+  {% for e in form.email.errors%}
+  <p class="error">{{e}}</p>
+  {% endfor %}
+</div>
+
+<div class="input-box">
+  <label for="id_website">{{form.website.label}}</label>
+  {{form.website}}
+  {% for e in form.website.errors%}
+  <p class="error">{{e}}</p>
+  {% endfor %}
+</div>
+
+<div class="input-box">
+  <label for="id_note">{{form.note.label}}</label>
+  {{form.note}}
+  {% for e in form.note.errors%}
+  <p class="error">{{e}}</p>
+  {% endfor %}
+</div>
+
+<div class="input-box">
+  <label for="id_avatar">{{form.avatar.label}}</label>
+  {{form.avatar}}
+  {% for e in form.avatar.errors%}
+  <p class="error">{{e}}</p>
+  {% endfor %}
+</div>
+
+
+<button>Сохранить</button>
+</form>
+
+{% endblock content %}

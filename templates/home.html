@@ -3,27 +3,24 @@
 
 {% block content %}
 <div class="header-content">
-  <div class="avatar"></div>
+  <div class="avatar"><img src="{{profile.avatar}}"/></div>
   <h1>{{profile.first_name}} {{profile.last_name}}</h1>
   <h2>python-developer</h2>
   <p>{{profile.note}}</p>
   <p>
-    Email: <span>{{profile.email}}</span><br/>
+    Email: <span><a href="mailto:{{profile.email}}">{{profile.email}}</a></span><br/>
     Website: <span>{{profile.website}}</span>
   </p>
 </div>
 <hr/>
 <div class="inner-content">
-  <h3>Project</h3>
+  {% if profile.work_set.count %}<h3>Послужной список</h3>{% endif %}
+  {% for w in profile.work_set.all %}
   <div class="content-box">
-    <h1>[Job title]</h1>
-    <h2>compani name</h2>
-    <p>Содержимое контента</p>
+    <h1>{{w.campaign}}</h1>
+    <h2>{{w.place}} ({{w.begin}}{% if w.end %} - {{w.end}}{% endif %})</h2>
+    <p>{{w.note|safe}}</p>
   </div>
-  <div class="content-box">
-    <h1>[Job title]</h1>
-    <h2>compani name</h2>
-    <p>Содержимое контента</p>
-  </div>
+  {% endfor %}
 </div>
 {% endblock %}

@@ -6,5 +6,6 @@ urlpatterns = patterns(
     url(r'^$', 'index', name='home'),
     url(r'^feedback/$', 'index',
         {'template_name': "profile/contacts.html"}, name='feedback'),
+    (r'^edit/', include('profile.edit.urls')),
     
 )

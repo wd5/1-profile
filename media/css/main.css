@@ -81,6 +81,9 @@ hr {
     width: 220px;
     margin-left: 50px;
 }
+.avatar>img{
+    width:220px;
+}
 
 .content-box h1 {
     color:#0b8bbb;
@@ -137,3 +140,63 @@ hr {
     //text-shadow:none;
     color:#111;
 }
+
+/* css for form */
+.error {
+    color: red;
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+input[type="text"], textarea {
+    border: 1px solid #777;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 3px #777;
+    padding:3px;
+}
+
+input[type="text"]:hover, textarea:hover {
+    border: 1px solid #9DC8FF;
+    box-shadow: 0 0 3px #57AECF;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border: 1px solid #408B64;
+    box-shadow: 0 0 3px #408B64;
+}
+
+
+input {
+    height: 20px;
+    width: 300px;
+}
+
+.input-box {
+    padding:5px;
+}
+
+label {
+    display: block;
+    float: left;
+    position: relative;
+    top: 0;
+    width: 100px;
+}
+
+button {
+    background: none repeat scroll 0 0 #33AA33;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 1px 1px 2px black;
+    color: white;
+    padding: 4px;
+    text-shadow: 1px 1px 1px black;
+}
+
+.box-form {
+    background-color: #EFEFEF;
+    box-shadow: 0 0 3px #CCCCCC;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+/* end css for form */

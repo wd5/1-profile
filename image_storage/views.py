@@ -5,24 +5,23 @@ from google.appengine.ext import db
 
 from image_storage.models import ImageBlob, Image
 
-def _save_image(request,app,user=None):
+def _save_image(request):
+    res = []
     for file_name in request.FILES.keys():
         img = request.FILES[file_name]
         name = img.name
-        tag = request.POST['tag']
+        tag = request.POST.get('tag','')
         storeimage = ImageBlob()
         storeimage.img = db.Blob(img.read())
         key = storeimage.put()
 
-        if user is None:
-            user = request.user 
-
         IMG = Image(image_id=key.id(),
                     tag=tag,
                     name=name,
-                    owner=user,
-                    app = app)
+                    )
         IMG.save()
+        res.append(IMG)
+    return res
 
 def get_image(request,img_id):
     img = get_object_or_404(Image,id=img_id)
