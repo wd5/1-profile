@@ -16,7 +16,7 @@
 {% if profile.get_social %}
 <h6>Так же вы можете найти меня в социальных сетях:</h6>
 {% for i in profile.get_social %}
-<span>{{i.title}}: <span><a href="{{i}}" target="_blanck">i</a>
+<span>{{i.title}}: <span><a href="{{i}}" target="_blanck">{{i}}</a><br/>
 {% endfor %}
 {% endif %}
 
