@@ -32,7 +32,8 @@ INSTALLED_APPS = (
     'djangoappengine',
     'profile',
     'profile.edit',
-    'image_storage'
+    'image_storage',
+    'blog'
 )
 
 MIDDLEWARE_CLASSES = (

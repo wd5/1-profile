@@ -25,3 +25,9 @@ indexes:
   properties:
   - name: task_id
   - name: end
+
+- kind: blog_post
+  properties:
+  - name: active
+  - name: created
+    direction: desc

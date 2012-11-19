@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block subtitle %}Редактирование профиля{% endblock %}
+
+{% block content %}
+<h3>Редактирование основных данных профиля.</h3>
+<form method="POST" action="" enctype="multipart/form-data">
+{{form.as_p}}
+<button>Сохранить</button>
+</form>
+{% endblock content %}

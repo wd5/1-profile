@@ -11,16 +11,7 @@ from profile.models import get_profile, Work
 from profile.forms import EditProfile, FormWork
 from image_storage.views import _save_image
 
-from google.appengine.api import users
-def check_user(original_function):
-    def new_function(*args, **kwargs):
-        user = users.get_current_user()
-        if user:
-            if user.email().lower()=='barauskasalex@gmail.com':
-                return original_function(*args, **kwargs)
-        return HttpResponseRedirect(users.create_login_url(args[0].META.get('PATH_INFO','/edie/')))
-    return new_function
-    
+from decorators import check_user
 
 
 @check_user
