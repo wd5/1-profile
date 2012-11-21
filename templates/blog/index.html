@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block subtitle %}Home{% endblock %}
+{% block subtitle %}Blog{% endblock %}
 
 {% block content %}
 {% for p in posts %}
 <h3>{{p.header}}</h3>
 <h5>{{p.author}} - {{p.created}}</h5>
 <p>{{p.preview}}</p>
+<a href="{% url blog-post-view p.id %}">читать дальше...</a>
 {% endfor %}
 {% endblock content %}
 

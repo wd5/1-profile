@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block subtitle %}Blog{% endblock %}
+
+{% block content %}
+<h3>{{post.header}}</h3>
+<h5>{{post.author}} - {{post.created}}</h5>
+<p>{{post.preview}}</p>
+<div>{{post.body|safe}}</div>
+{% endblock content %}
+

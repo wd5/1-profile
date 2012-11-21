@@ -23,11 +23,10 @@
 	</div-->    
     <div class="content">
       <div class="menu">
-
 	<ul>
-	  <li class="active"><a href="/">Главная</a></li>
-	  <li><a href="{% url feedback %}">Контакты</a></li>
-	  <li><a href="#">О проекте</a></li>
+	  <li{% if not section %} class="active"{% endif %}><a href="/">Главная</a></li>
+	  <li{% if section == 'blog' %} class="active"{% endif %}><a href="{% url blog %}">Блог</a></li>
+	  <li{% if section == 'feedback' %} class="active"{% endif %}><a href="{% url feedback %}">Контакты</a></li>
 	</ul>
 	<div class="clear"></div>
       </div>
