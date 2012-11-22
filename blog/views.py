@@ -20,8 +20,11 @@ def post_view(request, post_id):
     post = get_object_or_404(Post,id=post_id)
     if not post.active:
         return HttpResponseNotFound()
+    other_posts = Post.objects.filter(tag=post.tag).exclude(id=post.id)[:10]
     return render_to_response('blog/view.html',
-                              {'post':post},
+                              {'post': post,
+                               'other_posts': other_posts,
+                               },
                               context_instance=RequestContext(request))    
 
 

@@ -200,3 +200,56 @@ button {
     padding: 20px;
 }
 /* end css for form */
+
+/* blog css*/
+.blog-navs {
+    float:right;
+    width:20%;
+    height:100%;
+    border-left:solid 1px #CCC;
+    padding-left:20px;
+    padding-bottom:20px;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
+.post-content {
+    //width:75%;
+
+}
+
+#tags, #other-posts {
+    background: none repeat scroll 0 0 #F0F0E7;
+    border-radius: 5px 5px 5px 5px;
+    font-family: tahoma,arial;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 5px;
+    width:100%;
+    
+}
+#tags>div {
+    float: left;
+    margin: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px;
+    background: none repeat scroll 0 0 #EAEEFF;
+    color: #003C0A;
+}
+
+#other-posts h1 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px;
+    color: #104C1A;
+}
+#other-posts a:hover{
+    text-decoration:underline;
+    color:#444;
+}
+#other-posts a{
+    margin: 5px;
+    font-size:12px;
+}
+/* END blog css*/

@@ -2,11 +2,33 @@
 {% block subtitle %}Blog{% endblock %}
 
 {% block content %}
-{% for p in posts %}
-<h3>{{p.header}}</h3>
-<h5>{{p.author}} - {{p.created}}</h5>
-<p>{{p.preview}}</p>
-<a href="{% url blog-post-view p.id %}">читать дальше...</a>
-{% endfor %}
+<!--h3>Блог</h3-->
+<div class="blog-navs">
+  <div id="tags">
+    <div>HTML/CSS</div>
+    <div>Python/Django</div>
+    <div>Linux</div>
+    <div>C/C++</div>
+  </div>
+  {%if other_posts%}
+  <div id="other-posts">
+    <h1>Похожие статьи</h1>
+    {% for p in other_posts %}
+    <a href="{% url blog-post-view p.id %}">{{p.header}}({{p.created}})</a>
+    {% endfor %}
+  </div>
+  {%endif%}
+</div>
+<div class="post-content">
+{% block blog_content %}
+  {% for p in posts %}
+  <h3>{{p.header}}</h3>
+  <h5>{{p.author}} - {{p.created}}</h5>
+  <p>{{p.preview}}</p>
+  <a href="{% url blog-post-view p.id %}">читать дальше...</a>
+  {% endfor %}
+{% endblock blog_content %}
+<div>
+
 {% endblock content %}
 
