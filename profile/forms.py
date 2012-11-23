@@ -12,8 +12,8 @@ class EditProfile(forms.ModelForm):
         #fields = []
 
 class FormWork(forms.ModelForm):
-    begin = MyDateField()
-    end = MyDateField(required=False)
+    begin = forms.DateField(widget=forms.TextInput(attrs={'class': 'date '}))
+    end = forms.DateField(widget=forms.TextInput(attrs={'class': 'date '}))
     
     class Meta:
         model = Work
