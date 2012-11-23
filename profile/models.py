@@ -41,9 +41,12 @@ class Profile(models.Model):
     def get_skype(self):
         return self.get_contacts(t='s')
 
+    def jobs(self):
+        return self.work_set.all().order_by('-begin')
+
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
-
+    
 
 def get_profile():
     profile = Profile.objects.filter(active=True)

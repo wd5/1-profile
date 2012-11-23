@@ -6,7 +6,8 @@
 
 {% for form in forms %}
 <form class="box-form" method="POST" action="{%if form.instance.id%}{{form.instance.id}}{% endif %}" enctype="multipart/form-data">
-<div class="input-box">
+{{ form.as_p }}
+<!--div class="input-box">
   <label for="id_profile">{{form.profile.label}}</label>
   {{form.profile}}
   {% for e in form.profile.errors%}
@@ -52,7 +53,7 @@
   {% for e in form.note.errors%}
   <p class="error">{{e}}</p>
   {% endfor %}
-</div>
+</div-->
 
 <button>{%if form.instance.id%}Сохранить{%else%}Добавить{%endif%}</button>
 </form>

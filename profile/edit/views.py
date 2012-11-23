@@ -36,13 +36,15 @@ def edit_profile(request):
 @check_user
 def edit_work(request, work_id=None):
     profile = get_profile()
-    forms = map(lambda x: FormWork(instance=x), profile.work_set.all())
+    forms = map(lambda x: FormWork(instance=x, prefix='%s' % x.id),
+                profile.work_set.all())
     if request.method == "POST":
         work = None
         if work_id is not None:
             work = Work.objects.filter(id=work_id)
         if work:
-            form = FormWork(request.POST, instance=work[0])
+            form = FormWork(request.POST, instance=work[0],
+                            prefix='%s' % work[0].id)
         else:
             form = FormWork(request.POST)
         if form.is_valid():

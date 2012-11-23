@@ -12,6 +12,9 @@ class EditProfile(forms.ModelForm):
         #fields = []
 
 class FormWork(forms.ModelForm):
+    begin = MyDateField()
+    end = MyDateField(required=False)
+    
     class Meta:
         model = Work
     

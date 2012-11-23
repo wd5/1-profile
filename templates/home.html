@@ -3,7 +3,11 @@
 
 {% block content %}
 <div class="header-content">
-  <div class="avatar"><img src="{{profile.avatar}}"/></div>
+  <div class="avatar">
+    {% if profile.avatar %}
+    <img src="{{profile.avatar}}"/>
+    {% endif %}
+  </div>
   <h1>{{profile.first_name}} {{profile.last_name}}</h1>
   <h2>python-developer</h2>
   <p>{{profile.note}}</p>
@@ -15,7 +19,7 @@
 <hr/>
 <div class="inner-content">
   {% if profile.work_set.count %}<h3>Послужной список</h3>{% endif %}
-  {% for w in profile.work_set.all %}
+  {% for w in profile.jobs %}
   <div class="content-box">
     <h1>{{w.campaign}}</h1>
     <h2>{{w.place}} ({{w.begin}}{% if w.end %} - {{w.end}}{% endif %})</h2>

@@ -10,9 +10,15 @@ from forms import PostForm
 from decorators import check_user
 
 def index(request, tag=None):
-    last_posts = Post.objects.filter(active=True).order_by('-created')[:3]
+    tags = request.GET.getlist('tag')
+    if tags:
+        last_posts = Post.objects.filter(active=True,
+                                         tag__in=tags).order_by('-created')[:10]
+    else:
+        last_posts = Post.objects.filter(active=True).order_by('-created')[:3]
     return render_to_response('blog/index.html',
-                              {'posts':last_posts},
+                              {'posts': last_posts,
+                               },
                               context_instance=RequestContext(request))
 
 

@@ -31,3 +31,22 @@ indexes:
   - name: active
   - name: created
     direction: desc
+
+- kind: blog_post
+  properties:
+  - name: active
+  - name: tag
+  - name: created
+    direction: desc
+
+- kind: profile_work
+  properties:
+  - name: profile_id
+  - name: begin
+    direction: desc
+
+- kind: profile_work
+  properties:
+  - name: profile_id
+  - name: start
+    direction: desc

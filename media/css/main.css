@@ -1,12 +1,37 @@
-body {
+
+
+body { font-family: Verdana, Arial, sans-serif; color:#676d7b; font-size:17px;} 
+
+html, body {
+height: 100%;
+}
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -40px;
+}
+.push {
+height: 40px;
+}
+#footer {
+    height:40px;
+    text-align:center;
+    color:#777;
+    font-size: 14px;
+}
+#footer hr {
+    margin-bottom:10px;
+}
+/*body {
     margin:0;
     background-color: #eee;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
+}*/
 
 .clear{clear:both;}
 
-.content, .footer {
+.content {
     width:900px;
     margin:0px auto 10px;
     padding: 0 10px;
@@ -100,14 +125,6 @@ hr {
     font-size: 14px;
 }
 
-.footer {
-    margin-top:10px;
-    text-align:center;
-    color:#777;
-    font-size: 14px;
-
-}
-
 .menu ul{
     list-style: none outside none;
     float:right;
@@ -142,7 +159,7 @@ hr {
 }
 
 /* css for form */
-.error {
+.error, .errorlist  {
     color: red;
     font-size: 12px;
     margin: 0 0 0 10px;
@@ -153,6 +170,10 @@ input[type="text"], textarea {
     border-radius: 3px 3px 3px 3px;
     box-shadow: 0 0 3px #777;
     padding:3px;
+}
+
+textarea {
+    width:80%;
 }
 
 input[type="text"]:hover, textarea:hover {
@@ -228,7 +249,7 @@ button {
     width:100%;
     
 }
-#tags>div {
+#tags a {
     float: left;
     margin: 4px;
     font-size: 11px;
