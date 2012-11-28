@@ -202,6 +202,7 @@ label {
     position: relative;
     top: 0;
     width: 100px;
+    text-align: left;
 }
 
 button {
@@ -273,4 +274,43 @@ button {
     margin: 5px;
     font-size:12px;
 }
+
+.post-comments>h5 {
+    width:50%;
+    padding-bottom:5px;
+    border-bottom: solid 1px #CCC;
+}
+
+.post-comments * {
+    margin:5px;
+}
+
+.post-comments {
+    border-bottom: solid 1px black;
+    margin-bottom:30px;
+}
+
+.comment-message {
+    font-weight:normal;
+}
+
+.post-comments .date{
+    margin-right:50%;
+    font-size:10px;
+    color:#444;
+    float:right;
+}
+.captcha {
+    height: 55px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    width: 200px;
+}
+
+.captcha > img {
+    margin-left: -25px;
+    margin-top: -7px;
+}
+
 /* END blog css*/
+

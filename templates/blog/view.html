@@ -3,7 +3,29 @@
 {% block blog_content %}
 <h3>{{post.header}}</h3>
 <h5>{{post.author}} - {{post.created}}</h5>
-<p>{{post.preview}}</p>
+<p>{{post.preview|safe}}</p>
 <div>{{post.body|safe}}</div>
-{% endblock blog_content %}
 
+<div class="comments-box">
+  <h4 class="head"><span>КОММЕНТАРИИ</span></h4>
+  {% for C in post.comment_set.all %}
+  <div class="post-comments">
+    <p class="date">{{C.created}}</p>
+    <h5>{{C.author}}</h5>
+    <div style="clear:right"></div>
+    <p class="comment-message">{{C.text}}</p>
+  </div>
+  {% endfor %}
+  {% if not post.comment_set.all %}
+  Нет ни одного коментария.
+  {% endif %}
+</div>
+<form method="POST" class="comment-form">
+  {{form.as_p}}
+  <div class="captcha">
+    <img src="{{captcha}}"/>
+  </div>
+  <button class="btn" value="Save">Сохранить</button>
+</form>
+
+{% endblock blog_content %}

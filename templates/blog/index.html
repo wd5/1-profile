@@ -5,11 +5,11 @@
 <!--h3>Блог</h3-->
 <div class="blog-navs">
   <div id="tags">
-    <a href="?tag=html&tag=css">HTML/CSS</a>
-    <a href="?tag=django&tag=python">Python/Django</a>
-    <a href="?tag=linux">Linux</a>
-    <a href="?tag=c&tag=c++">C/C++</a>
-    <a href="?tag=js">JavaScript</a>
+    <a href="{%url blog%}?tag=html&tag=css">HTML/CSS</a>
+    <a href="{%url blog%}?tag=django&tag=python">Python/Django</a>
+    <a href="{%url blog%}?tag=linux">Linux</a>
+    <a href="{%url blog%}?tag=c&tag=c++">C/C++</a>
+    <a href="{%url blog%}?tag=js">JavaScript</a>
   </div>
   {%if other_posts%}
   <div id="other-posts">
@@ -25,7 +25,7 @@
   {% for p in posts %}
   <h3>{{p.header}}</h3>
   <h5>{{p.author}} - {{p.created}}</h5>
-  <p>{{p.preview}}</p>
+  <p>{{p.preview|safe}}</p>
   <a href="{% url blog-post-view p.id %}">читать дальше...</a>
   {% endfor %}
   {% endblock blog_content %}

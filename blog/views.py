@@ -5,9 +5,13 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
 from models import Post
-from forms import PostForm
+from forms import PostForm, CommentForm
 
 from decorators import check_user
+from utils import get_user_name
+from captcha import CaptchasDotNet
+from random import random
+
 
 def index(request, tag=None):
     tags = request.GET.getlist('tag')
@@ -26,10 +30,30 @@ def post_view(request, post_id):
     post = get_object_or_404(Post,id=post_id)
     if not post.active:
         return HttpResponseNotFound()
+    
     other_posts = Post.objects.filter(tag=post.tag).exclude(id=post.id)[:10]
+
+    captcha = CaptchasDotNet(client = 'barauskas',secret   = 'K1Qurc2oCY09sJA63cpseGEz3zOpwzDeZeR6YNvf')
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            if captcha.verify(form.cleaned_data['captcha'],request.session.get('rand','')):
+                form.instance.post = post
+                comment = form.save()
+                #comment.post = post
+                #comment.save()
+                form = CommentForm(initial={'author':get_user_name()})
+            else:
+                form.errors['captcha']=['Captcha is unvalid!']
+    else:
+        form = CommentForm(initial={'author':get_user_name()})
+    rand = str(int(random()*1000000))
+    request.session['rand']=rand
     return render_to_response('blog/view.html',
                               {'post': post,
                                'other_posts': other_posts,
+                               'form': form,
+                               'captcha':captcha.image_url(rand)
                                },
                               context_instance=RequestContext(request))    
 
