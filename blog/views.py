@@ -59,6 +59,14 @@ def post_view(request, post_id):
 
 
 @check_user
+def admin(request):
+    
+    return render_to_response('blog/admin.html',
+                              {'posts': Post.objects.all()},
+                              context_instance=RequestContext(request))
+    
+
+@check_user
 def create(request):
     if request.method == "POST":
         form = PostForm(request.POST)

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block subtitle %}Панель администирования{% endblock %}
+
+{% block content %}
+<h3>Панель администирования</h3>
+<ul>
+  {% for p in posts %}
+  <li><a href="{% url blog-edit p.id %}">{{p.header}}</a></li>
+  {% endfor %}
+</ul>
+{% endblock content %}

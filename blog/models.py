@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 class Post(models.Model):
@@ -11,7 +12,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, null=False)
-    author = models.CharField(max_length=64, null=False)
-    text = models.TextField()
+    author = models.CharField(u'Автор',max_length=64, null=False)
+    text = models.TextField(u'Комментарий')
     created = models.DateTimeField(auto_now_add=True, null=True)
     

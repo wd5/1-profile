@@ -10,10 +10,11 @@
     <a href="{%url blog%}?tag=linux">Linux</a>
     <a href="{%url blog%}?tag=c&tag=c++">C/C++</a>
     <a href="{%url blog%}?tag=js">JavaScript</a>
+    <a href="{%url blog%}">All</a>
   </div>
   {%if other_posts%}
   <div id="other-posts">
-    <h1>Похожие статьи</h1>
+    <h1>Похожие статьи</h1>и
     {% for p in other_posts %}
     <a href="{% url blog-post-view p.id %}">{{p.header}}({{p.created}})</a>
     {% endfor %}

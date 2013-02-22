@@ -5,7 +5,7 @@
 <h5>{{post.author}} - {{post.created}}</h5>
 <p>{{post.preview|safe}}</p>
 <div>{{post.body|safe}}</div>
-
+<hr/>
 <div class="comments-box">
   <h4 class="head"><span>КОММЕНТАРИИ</span></h4>
   {% for C in post.comment_set.all %}
@@ -17,7 +17,7 @@
   </div>
   {% endfor %}
   {% if not post.comment_set.all %}
-  Нет ни одного коментария.
+  Нет комментариев.
   {% endif %}
 </div>
 <form method="POST" class="comment-form">

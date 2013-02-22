@@ -6,7 +6,8 @@ urlpatterns = patterns(
     url(r'^$', 'index', name='blog'),
     url(r'^(?P<post_id>\d+)/$', 'post_view', name='blog-post-view'),
 
-    url(r'^create/$', 'create', name='blog-create'),
-    url(r'^(?P<post_id>\d+)/edit/$', 'edit', name='blog-edit'),
+    url(r'^admin/$', 'admin', name='blog-admin'),
+    url(r'^admin/create/$', 'create', name='blog-create'),
+    url(r'^admin/(?P<post_id>\d+)/edit/$', 'edit', name='blog-edit'),
 
 )
