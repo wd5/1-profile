@@ -13,7 +13,8 @@ class EditProfile(forms.ModelForm):
 
 class FormWork(forms.ModelForm):
     begin = forms.DateField(widget=forms.TextInput(attrs={'class': 'date '}))
-    end = forms.DateField(widget=forms.TextInput(attrs={'class': 'date '}))
+    end = forms.DateField(widget=forms.TextInput(attrs={'class': 'date '}),
+                          required=False)
     
     class Meta:
         model = Work
